@@ -1,0 +1,41 @@
+import matplotlib.pyplot as plt; plt.rcdefaults()
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+tnum=input("Enter the number of topics:")
+num=int(tnum)
+tlist=[]
+for j in range(0,num):
+     tpic=input("Enter the topic name:")
+     tlist.insert(j,tpic)
+print("Given list of topics is:",tlist)
+repeat=0
+rlist=[]
+for i in range (0,num):
+     topic=str(tlist[i])
+     repeat=0
+     print("Searching for:",topic)
+     f=open("sample.txt","r")
+     line=f.readline()
+     while line:
+          if topic in line:
+               repeat=repeat+1
+               print(line)
+          line=f.readline()
+     rlist.append(repeat)
+     f.close()
+print("Topic List:",tlist)
+print("Repeat List:",rlist)
+
+# part 2 Plotting Graph
+y_pos = np.arange(len(tlist))
+ 
+plt.bar(y_pos, rlist, align='center', alpha=1)
+plt.xticks(y_pos, tlist)
+plt.ylabel('Topics')
+plt.xlabel('Repeataions')
+plt.title('Topics and their Repeatation')
+ 
+plt.show()
+
